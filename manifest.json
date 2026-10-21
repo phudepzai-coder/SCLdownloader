@@ -1,0 +1,48 @@
+{
+  "manifest_version": 3,
+  "name": "SoundCloud Music Downloader",
+  "version": "1.0.0",
+  "description": "Tự động phân tích và tải nhạc từ link SoundCloud chất lượng cao với tốc độ nhanh.",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_title": "SoundCloud Music Downloader",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "background": {
+    "service_worker": "background/background.js"
+  },
+  "permissions": [
+    "downloads",
+    "storage",
+    "activeTab",
+    "tabs"
+  ],
+  "host_permissions": [
+    "*://*.soundcloud.com/*",
+    "*://*.sndcdn.com/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "*://soundcloud.com/*",
+        "*://m.soundcloud.com/*"
+      ],
+      "js": [
+        "content/content.js"
+      ],
+      "css": [
+        "content/content.css"
+      ],
+      "run_at": "document_end"
+    }
+  ]
+}
